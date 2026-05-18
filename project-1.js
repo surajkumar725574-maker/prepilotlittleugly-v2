@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:3000";
+const API_BASE = "https://prepilotlittleugly-v2.onrender.com/";
 
 async function sendMessage(){
   const input = document.getElementById("user-input");
