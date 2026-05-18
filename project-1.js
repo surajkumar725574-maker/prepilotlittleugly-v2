@@ -54,41 +54,53 @@ function addMessage(text, className){
 
   return div;
 }
+async function generatePlan() {
 
-async function generatePlan(){
-  const input = document.getElementById("topic-input");
-  const output = document.getElementById("plan-output");
+    const input = document.getElementById("topic-input");
+    const output = document.getElementById("plan-output");
 
-  if(!input || !output) return;
+    const topic = input.value.trim();
 
-  const topic = input.value.trim();
+    if (!topic) {
+        alert("Please enter a topic");
+        return;
+    }
 
-  if(topic === ""){
-    alert("Please enter a topic.");
-    return;
-  }
+    output.innerHTML = "Generating study plan...";
 
-  output.innerText = "Generating study plan...";
+    try {
 
-  try{
-    const response = await fetch(`${API_BASE}/generate-plan`, {
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify({
-        topic:topic
-      })
-    });
+        const response = await fetch(
+            "https://prepilotlittleugly-v2.onrender.com/generate-plan",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    topic: topic
+                })
+            }
+        );
 
-    const data = await response.json();
+        const data = await response.json();
 
-    output.innerText = data.result || "No plan received.";
+        output.innerHTML = `
+            <div class="bot-message">
+                ${data.result}
+            </div>
+        `;
 
-  }catch(error){
-    output.innerText = "Backend connection failed.";
-    console.log(error);
-  }
+    } catch (error) {
+
+        console.log(error);
+
+        output.innerHTML = `
+            <div class="bot-message">
+                Failed to generate study plan.
+            </div>
+        `;
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
