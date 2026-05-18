@@ -6,7 +6,6 @@ import axios from "axios";
 dotenv.config();
 
 const app = express();
-
 app.use(cors());
 app.use(express.json());
 
@@ -19,12 +18,7 @@ async function askAI(prompt) {
     "https://openrouter.ai/api/v1/chat/completions",
     {
       model: "openrouter/free",
-      messages: [
-        {
-          role: "user",
-          content: prompt
-        }
-      ]
+      messages: [{ role: "user", content: prompt }]
     },
     {
       headers: {
@@ -37,40 +31,33 @@ async function askAI(prompt) {
   return response.data.choices[0].message.content;
 }
 
-app.post("/chat", async (req, res) => {
+async function chatHandler(req, res) {
   try {
-    const message = req.body.message;
-
-    const reply = await askAI(message);
-
+    const reply = await askAI(req.body.message);
     res.json({ reply });
   } catch (error) {
     console.log(error.response?.data || error.message);
-
-    res.status(500).json({
-      reply: "Server error. Check backend logs."
-    });
+    res.status(500).json({ reply: "Server error. Check backend logs." });
   }
-});
+}
 
-app.post("/generate-plan", async (req, res) => {
+async function planHandler(req, res) {
   try {
-    const topic = req.body.topic;
-
     const result = await askAI(
-      `Create a beginner-friendly engineering study plan for ${topic}. 
-      Include important topics, daily tasks, practice questions, and revision plan.`
+      `Create a beginner-friendly engineering study plan for ${req.body.topic}`
     );
-
     res.json({ result });
   } catch (error) {
     console.log(error.response?.data || error.message);
-
-    res.status(500).json({
-      result: "Server error. Check backend logs."
-    });
+    res.status(500).json({ result: "Server error. Check backend logs." });
   }
-});
+}
+
+app.post("/chat", chatHandler);
+app.post("/api/chat", chatHandler);
+
+app.post("/generate-plan", planHandler);
+app.post("/api/generate-plan", planHandler);
 
 const PORT = process.env.PORT || 3000;
 
