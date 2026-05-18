@@ -1,42 +1,45 @@
 const API_BASE = "https://prepilotlittleugly-v2.onrender.com/";
 
-async function sendMessage(){
-  const input = document.getElementById("user-input");
-  const chatBox = document.getElementById("chat-box");
+async function sendMessage() {
+    const input = document.getElementById("user-input");
+    const message = input.value.trim();
 
-  if(!input || !chatBox) return;
+    if (!message) return;
 
-  const message = input.value.trim();
+    const chatBox = document.getElementById("chat-box");
 
-  if(message === ""){
-    alert("Please type something.");
-    return;
-  }
+    chatBox.innerHTML += `
+        <div class="user-message">${message}</div>
+    `;
 
-  addMessage(message, "user-message");
-  input.value = "";
+    input.value = "";
 
-  const loading = addMessage("Thinking...", "bot-message");
+    try {
+        const response = await fetch("https://prepilotlittleugly-v2.onrender.com/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ message })
+        });
 
-  try{
-    const response = await fetch(`${API_BASE}/chat`, {
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify({
-        message:message
-      })
-    });
+        const data = await response.json();
 
-    const data = await response.json();
+        chatBox.innerHTML += `
+            <div class="bot-message">${data.reply}</div>
+        `;
 
-    loading.innerText = data.reply || "No response received.";
+    } catch (error) {
+        console.error(error);
 
-  }catch(error){
-    loading.innerText = "Could not connect to AI backend.";
-    console.log(error);
-  }
+        chatBox.innerHTML += `
+            <div class="bot-message">
+                Backend connection failed.
+            </div>
+        `;
+    }
+
+    chatBox.scrollTop = chatBox.scrollHeight;
 }
 
 function addMessage(text, className){
