@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Study Plan Generator</title>
+
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="logo">EngineerHub</div>
+
+    <div class="nav-links">
+      <a href="./index.html">Home</a>
+      <a href="./assistant.html">AI Assistant</a>
+      <a href="./generator.html">Study Generator</a>
+      <a href="./teacher.html">Teacher Section</a>
+    </div>
+  </nav>
+
+  <section class="generator-section">
+
+    <h1>Study Plan Generator</h1>
+
+    <p>
+      Search your topic and generate a structured study plan.
+    </p>
+
+    <div class="generator-box">
+
+      <input
+        type="text"
+        id="topic-input"
+        placeholder="Enter topic like COA, Java, DSA..."
+      >
+
+      <button onclick="generatePlan()">
+        Generate Plan
+      </button>
+
+    </div>
+
+    <div id="plan-output" class="plan-output"></div>
+
+  </section>
+
+  <script src="./project-1.js"></script>
+
+</body>
+</html>

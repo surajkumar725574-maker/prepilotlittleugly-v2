@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>EngineerHub - AI Assistant</title>
+
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="logo">EngineerHub</div>
+
+    <div class="nav-links">
+      <a href="./index.html">Home</a>
+      <a href="./assistant.html">AI Assistant</a>
+      <a href="./generator.html">Study Generator</a>
+      <a href="./teacher.html">Teacher Section</a>
+    </div>
+  </nav>
+
+  <section class="assistant-layout">
+
+    <div class="subject-panel">
+
+      <h2>Engineering Subjects</h2>
+
+      <div class="subject-card">Computer Organization & Architecture</div>
+      <div class="subject-card">Formal Languages & Automata</div>
+      <div class="subject-card">Java Programming</div>
+      <div class="subject-card">Data Structures & Algorithms</div>
+      <div class="subject-card">Digital Electronics</div>
+      <div class="subject-card">DBMS</div>
+      <div class="subject-card">Operating System</div>
+      <div class="subject-card">Computer Networks</div>
+      <div class="subject-card">Mathematics</div>
+      <div class="subject-card">Physics</div>
+
+    </div>
+
+    <div class="chat-panel">
+
+      <div id="chat-box" class="chat-box">
+
+        <div class="bot-message">
+          Hello! Ask me any engineering or coding doubt.
+        </div>
+
+      </div>
+
+      <div class="chat-input-area">
+
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Type your question..."
+        >
+
+        <button onclick="sendMessage()">
+          Send
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <script src="./project-1.js"></script>
+
+</body>
+</html>
