@@ -3,9 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Teacher Section</title>
-
+  <title>EngineerHub - Teacher Section</title>
   <link rel="stylesheet" href="./style.css">
 </head>
 
@@ -23,14 +21,43 @@
   </nav>
 
   <section class="teacher-section">
-
     <h1>Teacher Section</h1>
+    <p class="teacher-subtitle">
+      Upload notes, create assignments, and manage study material for students.
+    </p>
 
-    <div class="teacher-card">
-      Upload notes, assignments and study materials here later.
+    <div class="teacher-grid">
+
+      <div class="teacher-card">
+        <h2>Upload Notes</h2>
+        <input type="file" id="notesFile">
+        <button onclick="uploadNotes()">Upload Notes</button>
+        <p id="notesMessage" class="success-message"></p>
+
+        <ul id="notesList" class="teacher-list"></ul>
+      </div>
+
+      <div class="teacher-card">
+        <h2>Create Assignment</h2>
+        <input type="text" id="assignmentTitle" placeholder="Assignment title">
+        <textarea id="assignmentDetails" placeholder="Assignment details"></textarea>
+        <button onclick="createAssignment()">Create Assignment</button>
+
+        <ul id="assignmentList" class="teacher-list"></ul>
+      </div>
+
+      <div class="teacher-card">
+        <h2>Study Material</h2>
+        <input type="text" id="materialTitle" placeholder="Material title">
+        <input type="text" id="materialLink" placeholder="Material link or topic">
+        <button onclick="addStudyMaterial()">Add Material</button>
+
+        <ul id="materialList" class="teacher-list"></ul>
+      </div>
+
     </div>
-
   </section>
 
+  <script src="./project-1.js"></script>
 </body>
 </html>

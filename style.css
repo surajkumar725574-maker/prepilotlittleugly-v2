@@ -358,3 +358,85 @@ body{
     justify-content:center;
   }
 }
+.teacher-subtitle {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #475569;
+}
+
+.teacher-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.teacher-card input,
+.teacher-card textarea {
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  font-size: 15px;
+}
+
+.teacher-card textarea {
+  height: 120px;
+  resize: vertical;
+}
+
+.teacher-card button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 12px;
+  background: #0f172a;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.teacher-card button:hover {
+  background: #1e293b;
+  transform: translateY(-2px);
+}
+
+.teacher-list {
+  list-style: none;
+  margin-top: 20px;
+  padding: 0;
+}
+
+.teacher-list li {
+  background: #f8fafc;
+  padding: 14px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.teacher-list li p {
+  margin-top: 6px;
+  color: #475569;
+  font-size: 14px;
+}
+
+.teacher-list li button {
+  background: #ef4444;
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+.teacher-list li button:hover {
+  background: #dc2626;
+}
+
+.success-message {
+  color: #16a34a;
+  font-weight: bold;
+  margin-top: 10px;
+}

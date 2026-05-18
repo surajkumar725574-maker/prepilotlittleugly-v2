@@ -105,3 +105,86 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+function uploadNotes() {
+  const fileInput = document.getElementById("notesFile");
+  const notesList = document.getElementById("notesList");
+  const message = document.getElementById("notesMessage");
+
+  if (!fileInput || !notesList) return;
+
+  const file = fileInput.files[0];
+
+  if (!file) {
+    alert("Please select a file first.");
+    return;
+  }
+
+  const li = document.createElement("li");
+  li.innerHTML = `
+    <span>${file.name}</span>
+    <button onclick="removeItem(this)">Remove</button>
+  `;
+
+  notesList.appendChild(li);
+
+  message.innerText = "Notes uploaded successfully.";
+  fileInput.value = "";
+}
+
+function createAssignment() {
+  const title = document.getElementById("assignmentTitle");
+  const details = document.getElementById("assignmentDetails");
+  const list = document.getElementById("assignmentList");
+
+  if (!title || !details || !list) return;
+
+  if (title.value.trim() === "" || details.value.trim() === "") {
+    alert("Please enter assignment title and details.");
+    return;
+  }
+
+  const li = document.createElement("li");
+  li.innerHTML = `
+    <div>
+      <strong>${title.value}</strong>
+      <p>${details.value}</p>
+    </div>
+    <button onclick="removeItem(this)">Remove</button>
+  `;
+
+  list.appendChild(li);
+
+  title.value = "";
+  details.value = "";
+}
+
+function addStudyMaterial() {
+  const title = document.getElementById("materialTitle");
+  const link = document.getElementById("materialLink");
+  const list = document.getElementById("materialList");
+
+  if (!title || !link || !list) return;
+
+  if (title.value.trim() === "" || link.value.trim() === "") {
+    alert("Please enter material title and link/topic.");
+    return;
+  }
+
+  const li = document.createElement("li");
+  li.innerHTML = `
+    <div>
+      <strong>${title.value}</strong>
+      <p>${link.value}</p>
+    </div>
+    <button onclick="removeItem(this)">Remove</button>
+  `;
+
+  list.appendChild(li);
+
+  title.value = "";
+  link.value = "";
+}
+
+function removeItem(button) {
+  button.parentElement.remove();
+}
