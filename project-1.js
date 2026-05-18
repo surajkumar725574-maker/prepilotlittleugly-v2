@@ -19,7 +19,7 @@ async function sendMessage(){
   const loading = addMessage("Thinking...", "bot-message");
 
   try{
-    const response = await fetch(`${API_BASE}/chat`, {
+    const response = await fetch(`${API_BASE}/api/chat`, {
       method:"POST",
       headers:{
         "Content-Type":"application/json"
